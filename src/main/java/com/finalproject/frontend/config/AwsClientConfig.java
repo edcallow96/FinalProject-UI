@@ -1,7 +1,5 @@
 package com.finalproject.frontend.config;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
@@ -25,22 +23,13 @@ public class AwsClientConfig {
   @Bean
   @Profile("default")
   public AmazonS3 awsS3Client() {
-    return AmazonS3ClientBuilder.standard().withRegion(applicationProperties.getAwsRegion())
-        .withCredentials(
-            new AWSStaticCredentialsProvider(
-                new BasicAWSCredentials(applicationProperties.getAwsAccessKey(), applicationProperties.getAwsSecretKey())))
-        .build();
+    return AmazonS3ClientBuilder.standard().withRegion(applicationProperties.getAwsRegion()).build();
   }
 
   @Bean
   @Profile("default")
   public AmazonDynamoDB amazonDynamoDB() {
-    return AmazonDynamoDBClientBuilder.standard()
-        .withRegion(applicationProperties.getAwsRegion())
-        .withCredentials(
-            new AWSStaticCredentialsProvider(
-                new BasicAWSCredentials(applicationProperties.getAwsAccessKey(), applicationProperties.getAwsSecretKey())))
-        .build();
+    return AmazonDynamoDBClientBuilder.standard().build();
   }
 
 }
