@@ -29,7 +29,7 @@ public class AwsClientConfig {
   @Bean
   @Profile("default")
   public AmazonDynamoDB amazonDynamoDB() {
-    return AmazonDynamoDBClientBuilder.standard().build();
+    return AmazonDynamoDBClientBuilder.standard().withRegion(applicationProperties.getAwsRegion()).build();
   }
 
 }
